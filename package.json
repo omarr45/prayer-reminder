@@ -1,0 +1,99 @@
+{
+  "name": "prayer-reminder",
+  "displayName": "Prayer Reminder",
+  "publisher": "OmarAbdulRahman",
+  "description": "An extension that reminds you to pray",
+  "version": "0.0.1",
+  "icon": "pray.png",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "prayer-times.getPrayers",
+        "title": "Get Prayers"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "Prayer Reminder",
+        "properties": {
+          "prayerReminder.country": {
+            "type": "string",
+            "default": "Egypt"
+          },
+          "prayerReminder.city": {
+            "type": "string",
+            "default": "Cairo"
+          },
+          "prayerReminder.method": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "enumDescriptions": [
+              "Shia Ithna-Ansari",
+              "University of Islamic Sciences, Karachi",
+              "Islamic Society of North America",
+              "Muslim World League",
+              "Umm Al-Qura University, Makkah",
+              "Egyptian General Authority of Survey",
+              "Institute of Geophysics, University of Tehran",
+              "Gulf Region",
+              "Kuwait",
+              "Qatar",
+              "Majlis Ugama Islam Singapura, Singapore",
+              "Union Organization islamic de France",
+              "Diyanet İşleri Başkanlığı, Turkey",
+              "Spiritual Administration of Muslims of Russia",
+              "Moonsighting Committee Worldwide (also requires shafaq paramteer"
+            ],
+            "default": 5
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.70.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.20.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
