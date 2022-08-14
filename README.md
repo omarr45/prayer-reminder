@@ -18,17 +18,12 @@ Users appreciate release notes as you update your extension. -->
 
 ## 1.0.0
 
-Initial release
+- Initial release
 
-<!-- ### 1.0.1
+## 1.0.1
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
---- -->
+- Fixed end-of-day issue.
+- Added `Refresh` function to force refresh timings
 
 ## Developed by
 

@@ -3,7 +3,7 @@
   "displayName": "Prayer Reminder",
   "publisher": "OmarAbdulRahman",
   "description": "An extension that reminds you to pray",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "icon": "pray.png",
   "repository": {
     "type": "git",
@@ -22,8 +22,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "prayer-times.getPrayers",
-        "title": "Get Prayers"
+        "command": "prayerReminder.refresh",
+        "title": "Prayer Reminder: Refresh"
       }
     ],
     "configuration": [
