@@ -3,8 +3,12 @@
   "displayName": "Prayer Reminder",
   "publisher": "OmarAbdulRahman",
   "description": "An extension that reminds you to pray",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "icon": "pray.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omarr45/prayer-reminder"
+  },
   "engines": {
     "vscode": "^1.70.0"
   },
