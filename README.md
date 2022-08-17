@@ -22,9 +22,15 @@ Users appreciate release notes as you update your extension. -->
 
 ## 1.0.1
 
-- Fixed end-of-day issue.
+- Fixed after-Isha issue.
 - Added `Refresh` function to force refresh timings
+
+## 1.0.2
+
+- Fixed end-of-day NaN issue.
 
 ## Developed by
 
 [Omar AbdulRahman](https://omar45.com/)
+
+## For any bugs or issues, please contact me at contact@omar45.com

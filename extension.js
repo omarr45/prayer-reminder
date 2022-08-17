@@ -12,7 +12,10 @@ const until = new Map(),
 const item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
 item.tooltip = 'Next prayer';
 
-let k, lastDay, res;
+let k,
+  lastDay,
+  res,
+  endOfDay = false;
 
 const updateMaps = async () => {
   until.clear();
@@ -81,9 +84,19 @@ const updateMaps = async () => {
       until.set(key, timeLeft);
     }
   }
+
+  if (until.size === 0) {
+    endOfDay = true;
+    item.text = `\$(watch) No prayers left today`;
+  }
 };
 
 const updateText = () => {
+  if (endOfDay || until.size === 0) {
+    item.text = `\$(watch) No prayers left today`;
+    return;
+  }
+
   // Check if the day has changed
   const date = new Date();
   const day = date.getDate();
@@ -141,14 +154,27 @@ async function activate(context) {
 
   // update the status bar item every minute
   setInterval(() => {
-    // remove the first item from the map if the time left is less than 0
-    if (until.get(k) - 60000 < 0) {
-      until.delete(k);
-    }
-    // update the time left until the next prayer
-    else until.set(k, until.get(k) - 60000);
+    if (endOfDay) {
+      item.text = `\$(watch) No prayers left today`;
 
-    updateText();
+      const date = new Date();
+      const day = date.getDate();
+
+      if (day !== lastDay) {
+        endOfDay = false;
+        updateMaps().then(() => updateText());
+      }
+    } else {
+      if (until.get(k) - 60000 < 0) {
+        // remove the first item from the map if the time left is less than 0
+        until.delete(k);
+        if (until.size === 0) endOfDay = true;
+      }
+      // update the time left until the next prayer
+      else until.set(k, until.get(k) - 60000);
+
+      updateText();
+    }
   }, 60000);
 
   const refresh = vscode.commands.registerCommand(
