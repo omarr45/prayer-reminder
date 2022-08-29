@@ -138,6 +138,7 @@ const updateText = () => {
       vscode.window.showInformationMessage(
         `رَكْعَتا الفَجْرِ خيرٌ منَ الدُّنيا وما فيها`
       );
+    updateMaps().then(() => updateText());
   }
 
   if (until.size === 0) {

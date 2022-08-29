@@ -29,6 +29,10 @@ Users appreciate release notes as you update your extension. -->
 
 - Fixed end-of-day NaN issue.
 
+## 1.0.3
+
+- Fixed wrong timings after prayers.
+
 ## Developed by
 
 [Omar AbdulRahman](https://omar45.com/)

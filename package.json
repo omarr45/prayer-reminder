@@ -3,7 +3,7 @@
   "displayName": "Prayer Reminder",
   "publisher": "OmarAbdulRahman",
   "description": "An extension that reminds you to never forget your prayers",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "icon": "pray.png",
   "repository": {
     "type": "git",
@@ -75,7 +75,7 @@
               "Spiritual Administration of Muslims of Russia",
               "Moonsighting Committee Worldwide (also requires shafaq paramteer"
             ],
-            "default": 5
+            "default": 6
           }
         }
       }
