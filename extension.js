@@ -15,6 +15,7 @@ item.tooltip = 'Next prayer';
 let k,
   lastDay,
   res,
+  isPrayerTime = false,
   endOfDay = false;
 
 const updateMaps = async () => {
@@ -130,8 +131,9 @@ const updateText = () => {
   }
 
   // Showing popup on prayer time
-  if (hours === 0 && minutes === 0) {
-    // TODO: Add some state so this shows only once and then resets
+  if (hours === 0 && minutes === 0 && !isPrayerTime) {
+    // Store some state so this shows only once and then resets
+    isPrayerTime = true;
 
     item.text = `\$(watch) ${k} Adhan now`;
     vscode.window.showInformationMessage(`It's time for ${k} prayer`);
@@ -143,6 +145,13 @@ const updateText = () => {
       vscode.window.showInformationMessage(
         `رَكْعَتا الفَجْرِ خيرٌ منَ الدُّنيا وما فيها`
       );
+
+    // We want to preserve the item text at least for this minute
+    return;
+  }
+  else if (isPrayerTime) {
+    // Reset after 1m of showing that it's prayer time
+    isPrayerTime = false;
   }
 
   if (until.size === 0) {
