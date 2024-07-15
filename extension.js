@@ -18,6 +18,11 @@ let k,
   isPrayerTime = false,
   endOfDay = false;
 
+const setEndOfDayText = () => {
+  item.text = `\$(watch) No prayers left today`;
+  item.backgroundColor = null;
+}
+
 const updateMaps = async () => {
   until.clear();
   timings.clear();
@@ -88,13 +93,13 @@ const updateMaps = async () => {
 
   if (until.size === 0) {
     endOfDay = true;
-    item.text = `\$(watch) No prayers left today`;
+    setEndOfDayText();
   }
 };
 
 const updateText = () => {
   if (endOfDay || until.size === 0) {
-    item.text = `\$(watch) No prayers left today`;
+    setEndOfDayText();
     return;
   }
 
@@ -158,7 +163,7 @@ const updateText = () => {
     }
 
     if (until.size === 0) {
-      item.text = `\$(watch) No prayers left today`;
+      setEndOfDayText();
     }
   }
 };
@@ -173,7 +178,7 @@ async function activate(context) {
   // update the status bar item every minute
   setInterval(() => {
     if (endOfDay) {
-      item.text = `\$(watch) No prayers left today`;
+      setEndOfDayText();
 
       const date = new Date();
       const day = date.getDate();
