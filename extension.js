@@ -114,48 +114,52 @@ const updateText = () => {
   const hours = Math.floor(until.get(k) / 1000 / 60 / 60);
   const minutes = Math.floor((until.get(k) / 1000 / 60 / 60 - hours) * 60);
 
-  // set the text
-  item.text = `\$(watch) ${k} in ${hours}h ${minutes}m`;
-
-  // Changing background color
-  if (hours === 0 && minutes <= 10 && minutes > 5) {
-    item.backgroundColor = new vscode.ThemeColor(
-      'statusBarItem.warningBackground'
-    );
-  } else if (hours === 0 && minutes <= 5) {
-    item.backgroundColor = new vscode.ThemeColor(
-      'statusBarItem.errorBackground'
-    );
-  } else {
-    item.backgroundColor = null;
-  }
-
   // Showing popup on prayer time
-  if (hours === 0 && minutes === 0 && !isPrayerTime) {
-    // Store some state so this shows only once and then resets
-    isPrayerTime = true;
+  if (hours === 0 && minutes === 0) {
+    if (!isPrayerTime) {
+      // Store some state so this shows only once and then resets
+      isPrayerTime = true;
 
-    item.text = `\$(watch) ${k} Adhan now`;
-    vscode.window.showInformationMessage(`It's time for ${k} prayer`);
-    if (k === 'Asr')
-      vscode.window.showInformationMessage(
-        `حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلاةِ الْوُسْطَى`
-      );
-    if (k === 'Fajr')
-      vscode.window.showInformationMessage(
-        `رَكْعَتا الفَجْرِ خيرٌ منَ الدُّنيا وما فيها`
-      );
+      item.text = `\$(watch) ${k} Adhan now`;
+      vscode.window.showInformationMessage(`It's time for ${k} prayer`);
+      if (k === 'Asr')
+        vscode.window.showInformationMessage(
+          `حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلاةِ الْوُسْطَى`
+        );
+      if (k === 'Fajr')
+        vscode.window.showInformationMessage(
+          `رَكْعَتا الفَجْرِ خيرٌ منَ الدُّنيا وما فيها`
+        );
 
-    // We want to preserve the item text at least for this minute
-    return;
+      // We want to preserve the item text at least for this minute
+      return;
+    }
   }
-  else if (isPrayerTime) {
-    // Reset after 1m of showing that it's prayer time
-    isPrayerTime = false;
-  }
+  else {
+    if (isPrayerTime) {
+      // Reset after 1m of showing that it's prayer time
+      isPrayerTime = false;
+    }
 
-  if (until.size === 0) {
-    item.text = `\$(watch) No prayers left today`;
+    // set the text
+    item.text = `\$(watch) ${k} in ${hours}h ${minutes}m`;
+
+    // Changing background color
+    if (hours === 0 && minutes <= 10 && minutes > 5) {
+      item.backgroundColor = new vscode.ThemeColor(
+        'statusBarItem.warningBackground'
+      );
+    } else if (hours === 0 && minutes <= 5) {
+      item.backgroundColor = new vscode.ThemeColor(
+        'statusBarItem.errorBackground'
+      );
+    } else {
+      item.backgroundColor = null;
+    }
+
+    if (until.size === 0) {
+      item.text = `\$(watch) No prayers left today`;
+    }
   }
 };
 
