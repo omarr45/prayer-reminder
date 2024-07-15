@@ -101,7 +101,10 @@ const updateText = () => {
   const date = new Date();
   const day = date.getDate();
 
-  if (day !== lastDay) updateMaps().then(() => updateText());
+  if (day !== lastDay) {
+    updateMaps().then(() => updateText());
+    return;
+  }
 
   // get the next prayer's name
   k = until.keys().next().value;
@@ -128,6 +131,8 @@ const updateText = () => {
 
   // Showing popup on prayer time
   if (hours === 0 && minutes === 0) {
+    // TODO: Add some state so this shows only once and then resets
+
     item.text = `\$(watch) ${k} Adhan now`;
     vscode.window.showInformationMessage(`It's time for ${k} prayer`);
     if (k === 'Asr')
