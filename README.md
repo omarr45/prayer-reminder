@@ -33,8 +33,12 @@ Users appreciate release notes as you update your extension. -->
 
 - Fixed wrong timings after prayers.
 
+## 1.0.4
+
+- Introduced stability fixes.
+
 ## Developed by
 
-[Omar AbdulRahman](https://omar45.com/)
+[Omar AbdulRahman](https://omar45.com/) & [Mohamed Eldeeb](https://github.com/mosamadeeb)
 
 ## For any bugs or issues, please contact me at contact@omar45.com
