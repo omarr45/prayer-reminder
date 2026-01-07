@@ -3,7 +3,8 @@
   "displayName": "Prayer Reminder",
   "publisher": "OmarAbdulRahman",
   "description": "An extension that reminds you to never forget your prayers",
-  "version": "1.0.4",
+  "license": "MIT",
+  "version": "1.0.6",
   "icon": "pray.png",
   "repository": {
     "type": "git",
@@ -16,7 +17,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "onCommand:prayerReminder.refresh"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -75,6 +77,18 @@
               "Moonsighting Committee Worldwide (also requires shafaq paramteer"
             ],
             "default": 6
+          },
+          "prayerReminder.refreshIntervalMinutes": {
+            "type": "integer",
+            "default": 5,
+            "minimum": 1,
+            "description": "Minutes between automatic refreshes of prayer times and status updates."
+          },
+          "prayerReminder.alertMinutes": {
+            "type": "integer",
+            "default": 20,
+            "minimum": 0,
+            "description": "Minutes before the next prayer to show a notification (0 to disable)."
           }
         }
       }
