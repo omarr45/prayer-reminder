@@ -3,7 +3,7 @@
   "displayName": "Prayer Reminder",
   "publisher": "OmarAbdulRahman",
   "description": "An extension that reminds you to never forget your prayers",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "icon": "pray.png",
   "repository": {
     "type": "git",
@@ -18,12 +18,28 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "prayerReminder.refresh",
         "title": "Prayer Reminder: Refresh"
+      },
+      {
+        "command": "prayerReminder.configure",
+        "title": "Prayer Reminder: Configure Prayer Times"
+      },
+      {
+        "command": "prayerReminder.detectLocation",
+        "title": "Prayer Reminder: Detect Location"
+      },
+      {
+        "command": "prayerReminder.openAdhkarSabah",
+        "title": "Prayer Reminder: Morning Adhkar (أذكار الصباح)"
+      },
+      {
+        "command": "prayerReminder.openAdhkarMasa",
+        "title": "Prayer Reminder: Evening Adhkar (أذكار المساء)"
       }
     ],
     "configuration": [
@@ -55,12 +71,20 @@
               12,
               13,
               14,
-              15
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23
             ],
             "enumDescriptions": [
-              "Shia Ithna-Ansari",
+              "Shia Ithna-Ashari, Leva Institute, Qum",
               "University of Islamic Sciences, Karachi",
-              "Islamic Society of North America",
+              "Islamic Society of North America (ISNA)",
               "Muslim World League",
               "Umm Al-Qura University, Makkah",
               "Egyptian General Authority of Survey",
@@ -69,12 +93,30 @@
               "Kuwait",
               "Qatar",
               "Majlis Ugama Islam Singapura, Singapore",
-              "Union Organization islamic de France",
-              "Diyanet İşleri Başkanlığı, Turkey",
+              "Union Organization Islamic de France",
+              "Diyanet Isleri Baskanligi, Turkey",
               "Spiritual Administration of Muslims of Russia",
-              "Moonsighting Committee Worldwide (also requires shafaq paramteer"
+              "Moonsighting Committee Worldwide",
+              "Dubai",
+              "Jabatan Kemajuan Islam Malaysia (JAKIM)",
+              "Tunisia",
+              "Algeria",
+              "Kementerian Agama Republik Indonesia",
+              "Morocco",
+              "Comunidade Islamica de Lisboa",
+              "Ministry of Awqaf, Islamic Affairs and Holy Places, Jordan"
             ],
-            "default": 6
+            "default": 5
+          },
+          "prayerReminder.adhkarSabah": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show Morning Adhkar (أذكار الصباح) reminder after Fajr prayer"
+          },
+          "prayerReminder.adhkarMasa": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show Evening Adhkar (أذكار المساء) reminder after Asr prayer"
           }
         }
       }
